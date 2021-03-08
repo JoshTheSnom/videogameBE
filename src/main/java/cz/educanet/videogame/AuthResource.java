@@ -14,6 +14,7 @@ public class AuthResource {
     @Inject
     private LoginManager loginManager;
 
+    int count = 0;
     @Path("/register")
     @POST
     public Response register(User tempUser) {

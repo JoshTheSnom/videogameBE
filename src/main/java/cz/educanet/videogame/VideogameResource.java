@@ -12,38 +12,61 @@ import javax.ws.rs.core.Response;
 public class VideogameResource {
     @Inject
     VideogameManager videogameManager;
+
+    @Inject
+    LoginManager loginManager;
+
     @GET
-    public Response getVideogames(){
-        return Response.ok(videogameManager.getVideogames()).build();
+    public Response getVideogames() {
+        if (loginManager.loggers == null) return Response.status(Response.Status.UNAUTHORIZED).build();
+        else {
+            return Response.ok(videogameManager.getVideogames()).build();
+        }
+
     }
 
     @GET
     @Path("{id}")
     public Response getOneVideogame(@PathParam("id") int id) {
-        return Response.ok(videogameManager.getVideogameById(id)).build();
+        if (loginManager.loggers == null) return Response.status(Response.Status.UNAUTHORIZED).build();
+        else {
+            return Response.ok(videogameManager.getVideogameById(id)).build();
+        }
+
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
-    public Response addVideogame(Videogame videogame){
-        videogameManager.addVideogame(videogame);
-        return Response.ok().build();
+    public Response addVideogame(Videogame videogame) {
+        if (loginManager.loggers == null) return Response.status(Response.Status.UNAUTHORIZED).build();
+        else {
+            videogameManager.addVideogame(videogame);
+            return Response.ok().build();
+        }
+
     }
+
     @PUT
     @Path("{id}")
     public Response editVideogame(@PathParam("id") int id, Videogame videogame) {
-        if(videogameManager.editVideogame(id, videogame)) {
-            return Response.ok().build();
+        if (loginManager.loggers == null) return Response.status(Response.Status.UNAUTHORIZED).build();
+        else {
+            if (videogameManager.editVideogame(id, videogame)) {
+                return Response.ok().build();
+            } else return Response.status(Response.Status.BAD_REQUEST).build();
         }
-        else return Response.status(Response.Status.BAD_REQUEST).build();
+
     }
 
     @DELETE
     @Path("{id}")
     public Response deleteVideogame(@PathParam("id") int id) {
-        if(videogameManager.deleteVideogame(id)) {
-            return Response.ok().build();
+        if (loginManager.loggers == null) return Response.status(Response.Status.UNAUTHORIZED).build();
+        else {
+            if (videogameManager.deleteVideogame(id)) {
+                return Response.ok().build();
+            } else return Response.status(Response.Status.BAD_REQUEST).build();
         }
-        else return Response.status(Response.Status.BAD_REQUEST).build();
+
     }
 }

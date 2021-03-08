@@ -1,6 +1,11 @@
 package cz.educanet.videogame;
 
 public class Videogame {
+
+    public Videogame() {
+
+    }
+
     private int id;
     private String name;
     private String genre;

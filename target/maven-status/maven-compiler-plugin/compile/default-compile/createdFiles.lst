@@ -1,4 +1,9 @@
 cz\educanet\videogame\ApiConfig.class
+cz\educanet\videogame\LoginManager.class
+cz\educanet\videogame\User.class
+cz\educanet\videogame\VideogameResource.class
+cz\educanet\videogame\UserManager.class
+cz\educanet\videogame\UserResource.class
 cz\educanet\videogame\Videogame.class
 cz\educanet\videogame\VideogameManager.class
-cz\educanet\videogame\VideogameResource.class
+cz\educanet\videogame\AuthResource.class

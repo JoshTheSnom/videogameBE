@@ -23,6 +23,7 @@ public class VideogameResource {
         return Response.ok(videogameManager.getVideogameById(id)).build();
     }
 
+    @Consumes(MediaType.APPLICATION_JSON)
     @POST
     public Response addVideogame(Videogame videogame){
         videogameManager.addVideogame(videogame);
